@@ -50,6 +50,27 @@ def register_user(request):
 
 	return render(request, 'register.html', {'form':form})
 
+def customer_record(request, pk):
+      if request.user.is_authenticated:
+            # Lookup Records
+            customer_record = Record.objects.get(id = pk)
+            return render(request, 'record.html', {'customer_record':customer_record})
+           
+      else:
+            messages.success(request,'You need to Login')
+            return redirect('home')
 
+def delete_record(request, pk):
+      if request.user.is_authenticated:
+            delete_it = Record.objects.get(id = pk)
+            delete_it.delete()
+            messages.success(request,'You are deleted Successfuly')
+            return redirect('home')
+      else:
+            messages.success(request,'You have no permission to delete')
+            return redirect('home')
+      
+
+      
 
     
