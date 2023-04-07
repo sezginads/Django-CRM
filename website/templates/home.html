@@ -4,7 +4,15 @@
 <div class="col-md-6 offset-md-3"> 
 
 {% if user.is_authenticated %}
-<h1>Hello I am in</h1>
+
+<h1>Records</h1>
+{% for record in records  %}
+  <ol>
+    <li>
+      {{record}}
+    </li>
+  </ol> 
+{% endfor %}
 {%else%}
 <h1>LOGIN</h1>
 
